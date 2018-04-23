@@ -1,0 +1,89 @@
+@CHARSET "UTF-8";
+.errors {
+	color: red;
+	font-weight: bold;
+}
+.pagedisplay {
+	background: url(../images/pagedisplay.gif) no-repeat;
+	width: 72px;
+	height: 14px;
+	text-align: center;
+	float: left;
+	margin-right: 8px;
+}
+
+.pageinformation {
+	float: left;
+	margin-right: 8px;
+}
+
+.pageinformation a:link {
+	text-decoration: none;
+}
+
+.pageinformation a:hover {
+	text-decoration: underline;
+}
+
+.pageinformation a:visited {
+	text-decoration: none;
+}
+
+.pagespacing {
+	margin-right: 6px;
+}
+.currentpagespacing{
+	margin-right: 6px;
+	color:red;
+	font-weight: bold;
+}
+.previous {
+	text-decoration: none;
+	background: url(../images/previous.gif) no-repeat;
+}
+
+.next {
+	text-decoration: none;
+	background: url(../images/next.gif) no-repeat;
+}
+
+.pageselectstyle {
+	width: 40px;
+	height: 22px;
+	height: 17px\9;
+	font-size: 11px;
+	border: 1px solid #c4c4c4;
+}
+
+
+
+
+
+/* top */  
+.topNav {color:#eeeeee; position:relative;width:100%;height:48px; top:0px;  border-bottom: 2px solid #CC001D; margin-bottom:3px\9;}
+.cmsLogo{float:left;padding:5px 10px 0px 10px;}
+.cmsNav{float:right;padding:0px;}
+.cmsNav ul {margin:0px;padding:0px;}
+.cmsNav ul li {cursor: pointer;display: inline;float: left;}
+.cmsNav ul li a {color:#313762;display: block;float: left;text-decoration: none;}
+.cmsNav ul li img {display: block;float: left;margin: 10px 8px 8px 8px;}
+.cmsNav ul li span {display: block;float: left;padding: 14px 16px 0px 2px;}
+
+
+/* search-area */
+.searchName{ text-align:center;}
+.searchText{ width:80%; border:solid 1px #ccc; height:22px; line-height:22px;}
+
+/* NAV */
+.mainNav {height: auto;/*position:relative;*/width: 100%;margin-top:0px; margin-top:-3px\9; background:#F7F7F7/* url(../images/top_navbg.jpg) 0 0 repeat-x */; border-bottom: 1px solid #D7D7D7; height:40px; overflow:hidden;}
+.middleNav {  margin-right: 1px; height:40px; }
+.middleNav ul { margin: 0px;padding:0px;}
+.middleNav ul li { border-right:1px solid #d7d7d7; text-align: center; display: block; float:left; margin-left:0px; width:150px; height:40px; /* padding:1px 1px 0 1px;*/}
+/* .middleNav ul li:hover,.middleNav ul li.active{border-color:#637fb1;} */
+.middleNav ul li a { /* background:url(../images/menuBg.jpg) repeat-x 0 0; */color:#000;padding:0px; line-height:40px; font-size:14px; font-family:Arial, "微软雅黑"; width:100%;}
+.middleNav ul li a:hover,.middleNav ul li a.current{background:/*url(../images/menuBgCurrent.jpg) repeat-x 0 0 */ #9E0016;color:#fff; padding:0px; display:block; width:150px; height:40px; line-height:40px;}
+
+
+
+.edit_bottom{ margin-top:10px;}
+

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+	<!-- Base Tiles Definition -->
+	<definition name="base.definition" template="/WEB-INF/jsp/layout/demo/demoLayout.jsp">
+		<put-attribute name="navigation" type="template" value="/WEB-INF/jsp/layout/demo/navigation.jsp" />
+		<put-attribute name="footer" type="template" value="/WEB-INF/jsp/layout/demo/footer.jsp" />
+	</definition>
+
+	<!-- Tiles Definition of welcome page -->
+	<definition name="page.welcome" extends="base.definition">
+		<put-attribute name="title" type="string"  value="欢迎进入房地产销售管理系统" />
+		<put-attribute name="body" type="template" value="/WEB-INF/jsp/layout/demo/index.jsp" />
+	</definition>
+
+	<!-- Tiles Definition of Address Book -->
+	<definition name="page.addr_book_edit" extends="base.definition">
+		<put-attribute name="title" type="string"  value="房地产销售管理系统" />
+		<put-attribute name="body" type="template" value="/WEB-INF/jsp/demo/addr_book/addr_book_edit.jsp" />
+	</definition>
+
+	<definition name="page.addr_book_list" extends="base.definition">
+		<put-attribute name="title" type="string"  value="房地产销售管理系统" />
+		<put-attribute name="body" type="template" value="/WEB-INF/jsp/demo/addr_book/addr_book_list.jsp" />
+	</definition>
+
+	<!-- Tiles Definition of System note -->
+	<definition name="page.note_edit" extends="base.definition">
+		<put-attribute name="title" type="string"  value="房地产销售管理系统" />
+		<put-attribute name="body" type="template" value="/WEB-INF/jsp/demo/note/note_edit.jsp" />
+	</definition>
+
+	<definition name="page.note_list" extends="base.definition">
+		<put-attribute name="title"  type="string" value="房地产销售管理系统" />
+		<put-attribute name="body" type="template" value="/WEB-INF/jsp/demo/note/note_list.jsp" />
+	</definition>
+
+	<!-- Tiles Definition of account -->
+	<definition name="page.account_list" extends="base.definition">
+		<put-attribute name="title"  type="string" value="房地产销售管理系统" />
+		<put-attribute name="body" type="template" value="/WEB-INF/jsp/frame/account/acct_list.jsp" />
+	</definition>
+
+	<definition name="page.account_edit" extends="base.definition">
+		<put-attribute name="title" type="string"  value="房地产销售管理系统" />
+		<put-attribute name="body" type="template" value="/WEB-INF/jsp/frame/account/acct_edit.jsp" />
+	</definition>
+
+	<definition name="page.choose_duty" extends="base.definition">
+		<put-attribute name="title" type="string"  value="房地产销售管理系统" />
+		<put-attribute name="body" type="template" value="/WEB-INF/jsp/frame/account/dutychoose.jsp" />
+	</definition>
+	<definition name="page.choose_duty_group" extends="base.definition">
+		<put-attribute name="title" type="string"  value="房地产销售管理系统" />
+		<put-attribute name="body" type="template" value="/WEB-INF/jsp/frame/account/groupchoose.jsp" />
+	</definition>
+	<!-- Tiles Definition of duty -->
+	<definition name="page.duty_list" extends="base.definition">
+		<put-attribute name="title" type="string"  value="房地产销售管理系统" />
+		<put-attribute name="body" type="template" value="/WEB-INF/jsp/frame/duty/duty_list.jsp" />
+	</definition>
+
+	<definition name="page.duty_edit" extends="base.definition">
+		<put-attribute name="title" type="string"  value="房地产销售管理系统" />
+		<put-attribute name="body" type="template" value="/WEB-INF/jsp/frame/duty/duty_edit.jsp" />
+	</definition>
+
+	<definition name="page.choose_action" extends="base.definition">
+		<put-attribute name="title"  type="string" value="房地产销售管理系统" />
+		<put-attribute name="body" type="template" value="/WEB-INF/jsp/frame/duty/actionassign.jsp" />
+	</definition>
+	<!-- Tiles Definition of group -->
+	<definition name="page.group_list" extends="base.definition">
+		<put-attribute name="title" type="string"  value="房地产销售管理系统" />
+		<put-attribute name="body" type="template" value="/WEB-INF/jsp/frame/group/group_list.jsp" />
+	</definition>
+
+	<definition name="page.group_edit" extends="base.definition">
+		<put-attribute name="title" type="string"  value="房地产销售管理系统" />
+		<put-attribute name="body" type="template" value="/WEB-INF/jsp/frame/group/group_edit.jsp" />
+	</definition>
+	<!-- Tiles Definition of source -->
+	<definition name="page.source_list" extends="base.definition">
+		<put-attribute name="title" type="string" value="房地产销售管理系统" />
+		<put-attribute name="body" type="template" value="/WEB-INF/jsp/frame/source/source_list.jsp" />
+	</definition>
+
+	<definition name="page.source_edit" extends="base.definition">
+		<put-attribute name="title" type="string"  value="房地产销售管理系统" />
+		<put-attribute name="body" type="template" value="/WEB-INF/jsp/frame/source/source_edit.jsp" />
+	</definition>
+	<definition name="page.operation_list" extends="base.definition">
+		<put-attribute name="title" type="string" value="房地产销售管理系统" />
+		<put-attribute name="body" type="template" value="/WEB-INF/jsp/frame/source/source_action_list.jsp" />
+	</definition>
+
+	<definition name="page.operation_edit" extends="base.definition">
+		<put-attribute name="title" type="string"  value="房地产销售管理系统" />
+		<put-attribute name="body" type="template" value="/WEB-INF/jsp/frame/source/source_action_edit.jsp" />
+	</definition>
+
+    <definition name="page.changePassword_edit" extends="base.definition">
+		<put-attribute name="title" type="string"  value="房地产销售管理系统" />
+		<put-attribute name="body" type="template" value="/WEB-INF/jsp/layout/demo/change_password.jsp" />
+	</definition>
+
+	 <definition name="page.changePassword_index" extends="base.definition">
+		<put-attribute name="title" type="string"  value="房地产销售管理系统" />
+		<put-attribute name="body" type="template" value="/WEB-INF/jsp/layout/demo/index.jsp" />
+	</definition>
+
+	<definition name="page.adjust_frame" extends="base.definition">
+		<put-attribute name="title" type="string"  value="房地产销售管理系统" />
+		<put-attribute name="body" type="template" value="/WEB-INF/jsp/frame/source/adjust_frame.jsp" />
+	</definition>
+	<definition name="page.adjust_style" template="/WEB-INF/jsp/frame/source/adjust_style.jsp">
+	</definition>
+	<definition name="page.query_log" extends="base.definition">
+		<put-attribute name="title" type="string"  value="房地产销售管理系统" />
+		<put-attribute name="body" type="template" value="/WEB-INF/jsp/frame/source/logger_list.jsp" />
+	</definition>
+
+	<definition name="page.error" extends="base.definition">
+		<put-attribute name="title" type="string"  value="房地产销售管理系统" />
+		<put-attribute name="body" type="template" value="/WEB-INF/jsp/frame/error.jsp" />
+	</definition>
+
+	<definition name="page.ajax_test" extends="base.definition">
+		<put-attribute name="title" type="string"  value="房地产销售管理系统" />
+		<put-attribute name="body" type="template" value="/WEB-INF/jsp/frame/ajax/test.jsp" />
+	</definition>
+	<!-- category and dictionary page config  -->
+	<definition name="page.category_list" extends="base.definition">
+		<put-attribute name="title" type="string"  value="房地产销售管理系统" />
+		<put-attribute name="body" type="template" value="/WEB-INF/jsp/dictionary/category_list.jsp" />
+	</definition>
+	<definition name="page.category_edit" extends="base.definition">
+		<put-attribute name="title" type="string"  value="房地产销售管理系统" />
+		<put-attribute name="body" type="template" value="/WEB-INF/jsp/dictionary/category_edit.jsp" />
+	</definition>
+	<definition name="page.dictionary_list" extends="base.definition">
+		<put-attribute name="title" type="string"  value="房地产销售管理系统" />
+		<put-attribute name="body" type="template" value="/WEB-INF/jsp/dictionary/dictionary_list.jsp" />
+	</definition>
+	<definition name="page.dictionary_edit" extends="base.definition">
+		<put-attribute name="title" type="string"  value="房地产销售管理系统" />
+		<put-attribute name="body" type="template" value="/WEB-INF/jsp/dictionary/dictionary_edit.jsp" />
+	</definition>
+</tiles-definitions>

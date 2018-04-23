@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+	<!-- Base Tiles Definition -->
+	<definition name="base.definition" template="/WEB-INF/jsp/layout/demo/eposDetailLayout.jsp">
+	    <put-attribute name="header" type="template" value="/WEB-INF/jsp/layout/demo/header.jsp" />
+		<put-attribute name="navigation" type="template" value="/WEB-INF/jsp/layout/demo/navigation.jsp" />
+		<put-attribute name="footer" type="template" value="/WEB-INF/jsp/layout/demo/footer.jsp" />
+		<put-attribute name="title" type="string" value="李宁订单管理平台"></put-attribute>
+	</definition>
+
+	<definition name="page.lining.common" extends="base.definition">
+		<put-attribute name="body" type="string"  value="正在加载....." />
+	</definition>
+
+	<definition name="page.lining.error" extends="base.definition">
+		<put-attribute name="body" type="template" value="/WEB-INF/jsp/frame/error.jsp" />
+	</definition>
+
+</tiles-definitions>

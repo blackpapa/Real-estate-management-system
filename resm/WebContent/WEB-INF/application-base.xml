@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>/WEB-INF/jdbc.properties</value>
+			</list>
+		</property>
+	</bean>
+	<!-- Hibernate SessionFactory -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<!--
+			<property name="mappingJarLocations"> <list>
+			<value>/WEB-INF/lib/miao-framework-entity.jar</value> </list>
+			</property>
+		-->
+		<property name="mappingLocations">
+		<list>
+			<!-- 基本框架，包含账号、角色、资源、权限、日志 -->
+			<value>classpath*:/com/java/framework/hibernate/maps/oracle/*.hbm.xml</value>
+			<!-- 数据字典 -->
+			<value>classpath*:/com/java/dictionary/hibernate/oracle/*.hbm.xml</value>
+			<!-- 数据权限
+			<value>classpath*:/com/java/authority/hibernate/oracle/*.hbm.xml</value>-->
+			<value>classpath*:/com/java/resm/hibernate/oracle/*.hbm.xml</value>
+			<value>classpath*:/com/java/resm/web/entity/*.hbm.xml</value>
+		</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					${hibernate.dialect}
+				</prop>
+				<prop key="hibernate.show_sql">false</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.generate_statistics">false</prop>
+				<prop key="hibernate.default_batch_fetch_size">30</prop>
+				<prop key="hibernate.autoReconnect">true</prop>
+			</props>
+		</property>
+		<!--
+			<property name="lobHandler"> <ref local="oracleLobHandler" />
+			</property>
+		-->
+		<property name="eventListeners">
+			<map>
+				<entry key="merge">
+					<bean
+						class="org.springframework.orm.hibernate3.support.IdTransferringMergeEventListener" />
+				</entry>
+			</map>
+		</property>
+	</bean>
+	<bean id="txManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="operationLogAspec" class="com.java.framework.aspects.OperationLogAspect" />
+	<bean id="permitAspec" class="com.java.framework.aspects.PermitCheckAspect" />
+	<aop:aspectj-autoproxy />
+	<!--
+		- The controllers are autodetected POJOs labeled with the @Controller
+		annotation.
+	-->
+	<context:component-scan base-package="com.java.framework.action" />
+	<context:component-scan base-package="com.java.framework.show" />
+	<context:component-scan base-package="com.java.framework.security" />
+	<context:component-scan base-package="com.java.resm.action" />
+	<context:component-scan base-package="com.java.resm.show" />
+
+	<bean name="openSessionInViewInterceptor"
+		class="org.springframework.orm.hibernate3.support.OpenSessionInViewInterceptor">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+	</bean>
+	<bean id="handlerMapping"
+		class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+		<property name="interceptors">
+			<ref bean="openSessionInViewInterceptor" />
+		</property>
+	</bean>
+	<!--
+		Activates various annotations to be detected in bean classes: Spring's
+		@Required and @Autowired, as well as JSR 250's @Resource.
+	-->
+	<context:annotation-config />
+
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<!--define portal userInfo implement  -->
+	<!--
+		<bean id="securityLogin"
+		class="com.java.portal.service.SecurityLoginServiceImpl"> <property
+		name="hibernateTemplate" ref="hibernateTemplate" /> </bean>
+	-->
+	<bean id="ldapValidate" class="com.java.framework.service.LdapValidateServiceImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+	</bean>
+	<bean id="validateUserService" class="com.java.framework.service.ValidateUserImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+		<!--
+		<property name="ldapValidate" ref="ldapValidate" />
+		-->
+		<!--
+		<property name="securityLogin" ref="securityLogin" />
+		-->
+	</bean>
+	<bean id="accountService" class="com.java.framework.service.AccountServiceImpl">
+	</bean>
+	<bean id="systemService" class="com.java.framework.service.SystemServiceImpl">
+	</bean>
+	<bean id="operationService" class="com.java.framework.service.OperationServiceImpl">
+	</bean>
+	<bean id="roleService" class="com.java.framework.service.RoleServiceImpl">
+	</bean>
+	<bean id="sourceService" class="com.java.framework.service.SourceServiceImpl">
+	</bean>
+	<bean id="loginService" class="com.java.framework.service.LoginServiceImpl">
+	</bean>
+	<!-- Encrypt definition -->
+	<bean id="encrypt" class="com.java.framework.util.DESEncryptor" />
+	<!--
+		Message source for this context, loaded from localized "messages_xx"
+		files
+	-->
+	<!-- call method information -->
+	<bean id="callMethodLog" class="com.java.framework.service.LogCallMethodAdvice"/>
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>MessageResources</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.CookieLocaleResolver" />
+
+
+	<!--
+		========================= ASPECT CONFIGURATION
+		========================
+	-->
+	<!-- call method information configuration-->
+	<aop:config>
+		<aop:aspect id="serviceMethodLog" ref="callMethodLog">
+			<aop:pointcut expression="execution(* com.java.*.service.*Impl.*(..))"
+				id="serviceLogCut" />
+			<aop:before method="logInfo" pointcut-ref="serviceLogCut" />
+			<aop:after method="logInfoAfter" pointcut-ref="serviceLogCut" />
+		</aop:aspect>
+	</aop:config>
+	<!-- Transaction configuration  -->
+	<aop:config>
+		<aop:pointcut id="taskMethods"
+			expression="execution(* com.java.*.task.service.*Impl.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="taskMethods" />
+	</aop:config>
+	<aop:config>
+		<aop:pointcut id="frameworkMethods"
+			expression="execution(* com.java.framework.service.*Impl.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="frameworkMethods" />
+	</aop:config>
+	<aop:config>
+		<aop:pointcut id="baseServiceMethods"
+			expression="execution(* com.java.base.service.*Impl.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="baseServiceMethods" />
+	</aop:config>
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+			<!--
+			<tx:method name="get*" read-only="true"/>
+      		-->
+			<!-- other methods use the default transaction settings (see below) -->
+			<tx:method name="*" rollback-for="Exception" />
+		</tx:attributes>
+	</tx:advice>
+</beans>
